@@ -18,7 +18,7 @@ def main():
     
     # Ajoutez cette partie pour définir l'adresse et le port
     if len(sys.argv) == 1:
-        port = os.environ.get('PORT', '8000')
+        port = os.environ.get('PORT', '18012')
         sys.argv += ['runserver', f'0.0.0.0:{port}']
 
 
