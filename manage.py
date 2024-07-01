@@ -16,10 +16,12 @@ def main():
         ) from exc
 
     
-    # Ajoutez cette partie pour définir l'adresse et le port
+    # On définit le port
     if len(sys.argv) == 1:
         port = os.environ.get('PORT', '18012')
         sys.argv += ['runserver', f'0.0.0.0:{port}']
+
+    execute_from_command_line(sys.argv)
 
 
 if __name__ == '__main__':
