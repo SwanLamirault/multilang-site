@@ -1,0 +1,61 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Détails de l'Article" %}</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4 text-center">{{ article.title }}</h1>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">{{ article.content }}</p>
+                <p class="publication-date">{% trans "Publié le:" %} {{ article.publication_date|date:"d M Y H:i" }}</p>
+                <!-- Bouton de suppression -->
+                <form action="{% url 'supprimer_article' article.id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">{% trans "Supprimer l'article" %}</button>
+                    <a href="{% url 'liste_articles' %}" class="btn btn-primary">{% trans "Retour à la liste des articles" %}</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+<style>
+    body {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+.article-card {
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+.article-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.publication-date {
+    font-size: 0.9em;
+    color: gray;
+}
+.card-title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: #343a40;
+}
+.card-text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #6c757d;
+}
+</style>
