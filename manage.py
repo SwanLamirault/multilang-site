@@ -3,8 +3,11 @@
 import os
 import sys
 
+from dotenv import load_dotenv
 
 def main():
+
+    load_dotenv() # Charger les variables d'environnement
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'multilang_site.settings')
     try:
@@ -16,7 +19,8 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
 
-    sys.argv += ['runserver', '0.0.0.0']
+    port = os.environ.get('PORT', '8000')
+    sys.argv += ['runserver', f'0.0.0.0:{port}']
     execute_from_command_line(sys.argv)
 
 
